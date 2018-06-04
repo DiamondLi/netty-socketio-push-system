@@ -1,0 +1,20 @@
+{
+	"wsPort" : 9002,
+	"wsHostname" : "192.168.0.192",
+	"isReuseIpAddr" : true,
+	"isUseEpoll" : false,
+	"isTcpNoDelay" : true,
+	"isKeepAlive" : true,
+	"servConfigs" : [ 
+		{
+			"servName" : "yll_service",
+			"chat" : true,
+			"personal" : true,
+			"boardcast" : true,
+			"workers" : 2,
+			"bChannel" : "yll_service_boardcast",
+			"cChannel" : "yll_service_chat",
+			"pChannel" : "yll_service_personal"
+		}
+	]
+}
