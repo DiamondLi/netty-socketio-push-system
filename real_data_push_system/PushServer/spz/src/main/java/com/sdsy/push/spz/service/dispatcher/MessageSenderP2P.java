@@ -54,10 +54,11 @@ public class MessageSenderP2P extends Thread {
 
 	public void run() {
 		while (true) {
+			String uuid = null;
 			try {
 				String message = privateMessageQueue.take();
 				JSONObject json = (JSONObject) JSON.parse(message);
-				String uuid = json.getString(Const.UUID);
+				uuid = json.getString(Const.UUID);
 				/**
 				 * 如果在推送码map中存在该推送码，就向该推送码的客户发送消息
 				 */
@@ -65,7 +66,7 @@ public class MessageSenderP2P extends Thread {
 					uuidAsKeyMap.get(uuid).sendEvent(eventName, message);
 				}
 			} catch (Exception e) {
-				logger.error("点对点通信，从消息队列取消息失败 {}", e);
+				logger.error("私人消息发送失败 uuid {} {}", uuid, e);
 			} 
 		}
 	}

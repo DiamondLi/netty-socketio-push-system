@@ -18,12 +18,11 @@ public class App {
     	
     	try {
         	/** 读取配置文件 */
-        	Config config = new ResolveJSONConfigFile().readConfigFile("config.json");
+        	Config config = new ResolveJSONConfigFile().readConfigFile();
         	Server server = new Server(config);
         	server.start();
     	} catch (Exception e) {
     		logger.error("catch a exception {}",e);
     	}
-    
     }
 }
