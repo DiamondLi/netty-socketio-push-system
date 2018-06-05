@@ -139,4 +139,8 @@ public class Server {
 	private void initServCentral() {
 		servCentral = new ServCentral(config);
 	}
+	
+	public int size() {
+		return server.getAllClients().size();
+	}
 }
