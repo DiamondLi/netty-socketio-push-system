@@ -17,6 +17,7 @@ public class RedisBoardCastListener extends JedisPubSub {
 	
 	@Override
 	public void onMessage(String channel,String message) {
+		System.out.println("channel is " + channel + " and message is : " + message);
 		// 如果频道不对,不做任何事
 		if(!channel.equals(this.channel)) {
 			return;

@@ -2,35 +2,34 @@ package com.sdsy.push.spz.monitor;
 
 import com.sdsy.push.spz.websocket.Server;
 
-public class Monitor {
+public class Monitor  {
 
-	// 获取整个系统的连接数
-	private Server server;
+	// 监控频道
+	private String channel;
 	
-	private int period;
+	// 监控频率  单位ms
+	private long period;
 	
-	// 保存基本信息
-	private void saveBasicInfo() {
-		
+	private MonitorInfo info;
+	
+	public Monitor(Server server,String channel,long period) {
+		info = new MonitorInfo(server,channel);
+		this.period = period;
 	}
 	
-	// 保存cpu信息  Only once
-	private void saveCpuInfo() {
-			
+	public void start() {
+		new Thread() {
+			@Override
+			public void run() {
+				while (true) {
+					try {
+						info.publish();
+						Thread.sleep(period);
+					} catch (Exception e) {
+						
+					}
+				}
+			}
+		}.start();
 	}
-	
-	// 保存 内存使用情况
-	private void saveMemoryUsageInfo() {
-		
-	}
-	
-	private void saveDiskUsageInfo() {
-		
-	}
-	
-	private void saveNetUsageInfo() {
-		
-	}
-	
-	
 }

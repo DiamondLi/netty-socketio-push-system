@@ -226,6 +226,13 @@
 	    	<version>3.7</version>
 		</dependency>
 		
+		<!-- https://mvnrepository.com/artifact/org.hyperic/sigar -->
+		<dependency>
+    		<groupId>org.hyperic</groupId>
+    		<artifactId>sigar</artifactId>
+    		<version>1.6.4</version>
+		</dependency>
+		
 	</dependencies>
 
 	<build>
