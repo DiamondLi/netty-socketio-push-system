@@ -7,14 +7,18 @@
 	"isKeepAlive" : true,
 	"servConfigs" : [ 
 		{
-			"servName" : "yll_service",
+			"servName" : "btc",
 			"chat" : true,
 			"personal" : true,
 			"boardcast" : true,
 			"workers" : 2,
-			"bChannel" : "yll_service_boardcast",
-			"cChannel" : "yll_service_chat",
-			"pChannel" : "yll_service_personal"
+			"bChannel" : "btc_boardcast",
+			"cChannel" : "btc_chat",
+			"pChannel" : "btc_personal"
 		}
-	]
+	],
+	"monitorConfig" : {
+		"channel" : "myhostname1",
+		"period" : 30000
+	}
 }
