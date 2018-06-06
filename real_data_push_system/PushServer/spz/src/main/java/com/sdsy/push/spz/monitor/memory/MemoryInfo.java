@@ -12,9 +12,9 @@ public class MemoryInfo {
 
 	private Sigar sigar;
 	
-	static final int KB = 1024;
+	private static final int KB = 1024;
 	
-	static final int MB = 1024;
+	private static final int MB = 1024;
 	
 	public MemoryInfo(Sigar sigar) {
 		this.sigar = sigar;
