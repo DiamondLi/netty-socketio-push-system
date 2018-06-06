@@ -39,6 +39,10 @@ public class Config {
 	 * 服务配置
 	 */
 	private ArrayList<ServConfig> servConfigs;
+	/**
+	 * 监控配置
+	 */
+	private MonitorConfig monitorConfig;
 	
 	public int getWsPort() {
 		return wsPort;
@@ -83,12 +87,20 @@ public class Config {
 		this.servConfigs = servConfigs;
 	}
 	
+	public MonitorConfig getMonitorConfig() {
+		return monitorConfig;
+	}
+	public void setMonitorConfig(MonitorConfig monitorConfig) {
+		this.monitorConfig = monitorConfig;
+	}
+	
 	@Override
 	public String toString() {
 		return "Config [wsPort=" + wsPort + ", wsHostname=" + wsHostname + ", isReuseIpAddr=" + isReuseIpAddr
 				+ ", isUseEpoll=" + isUseEpoll + ", isTcpNoDelay=" + isTcpNoDelay + ", isKeepAlive=" + isKeepAlive
-				+ ", servConfigs=" + JSON.toJSONString(servConfigs) + "]";
+				+ ", servConfigs=" + JSON.toJSONString(servConfigs) + ", monitorConfig=" + JSON.toJSONString(monitorConfig)+"]";
 	}
+	
 	
 	
 }

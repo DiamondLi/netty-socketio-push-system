@@ -23,7 +23,7 @@ public class App {
         	// 初始化服务器
         	Server server = new Server(config);
         	// 初始化监控器
-        	Monitor monitor = new Monitor(server,config.getWsHostname(),30000);
+        	Monitor monitor = new Monitor(server,config.getMonitorConfig().getChannel(),config.getMonitorConfig().getPeriod());
         	// 启动服务
         	server.start();
         	// 启动监控
