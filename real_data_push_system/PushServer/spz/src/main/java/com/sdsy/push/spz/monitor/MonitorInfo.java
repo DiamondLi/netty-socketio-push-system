@@ -1,12 +1,14 @@
 package com.sdsy.push.spz.monitor;
 
-import java.util.HashMap;
-import java.util.Map;
+import org.hyperic.sigar.NetInterfaceConfig;
+import org.hyperic.sigar.NetInterfaceStat;
 import org.hyperic.sigar.Sigar;
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.sdsy.push.spz.monitor.cpu.CpuInfo;
 import com.sdsy.push.spz.monitor.memory.MemoryInfo;
+import com.sdsy.push.spz.monitor.net.NetInfo;
 import com.sdsy.push.spz.service.redis.RedisUtils;
 import com.sdsy.push.spz.websocket.Server;
 
@@ -20,19 +22,21 @@ public class MonitorInfo {
 	private String channel;
 	
 	// 第一次调用网络接包和发包都是0
-	private long recePackets = 0;
+	private long lastReceiveKBytes = 0;
 	
-	private long sendPackets = 0;
+	private long lastSendKBytes = 0;
 	
-	private long lastTime;
-	
-	private long currentTime;
+//	private long lastTime;
+//	
+//	private long currentTime;
 	
 	private CpuInfo cpuInfo;
 	
 	private MemoryInfo memoryInfo;
 	
 	private BasicInfo basicInfo;
+	
+	private NetInfo netInfo;
 	
 	private Sigar sigar;
 	
@@ -74,13 +78,34 @@ public class MonitorInfo {
 		info.put("memoryInfo", memoryInfoMap);
 	}
 	
-	private void saveNetUsageInfo() {
+	private void saveNetUsageInfo() throws Exception {
 		JSONObject netInfoMap = new JSONObject();
 		netInfoMap.put("connections", server.size());
-		currentTime = System.currentTimeMillis();
-		if(first) {
-			lastTime = currentTime;
+//		currentTime = System.currentTimeMillis();
+//		long gap = first ? 0 : currentTime - lastTime;
+//		lastTime = currentTime;
+		String[] list = netInfo.getNetInterfaceList();
+		JSONArray netInterfaceList = new JSONArray();
+		for(int i = 0; i < list.length;i++) {
+			NetInterfaceConfig config = netInfo.getNetInterfaceConfig(list[i]);
+			if((config.getFlags() & 1L) >= 0) {
+				continue;
+			}
+			JSONObject netInterface = new JSONObject();
+			netInterface.put("name", config.getName());
+			NetInterfaceStat stat = netInfo.getNetInterfaceStat(list[i]);
+			if(first) {
+				netInterface.put("receiveKBytes", 0);
+				netInterface.put("sendKBytes", 0);
+			} else {
+				netInterface.put("receiveKBytes", netInfo.getReceiveBytes(stat) - lastReceiveKBytes);
+				netInterface.put("sendKBytes", netInfo.getSendBytes(stat) - lastSendKBytes);	
+			}
+			lastReceiveKBytes = netInfo.getReceiveBytes(stat);
+			lastSendKBytes = netInfo.getSendBytes(stat);
+			netInterfaceList.add(netInterface);
 		}
+		netInfoMap.put("netInterfaceList", netInterfaceList);
 		info.put("netInfo", netInfoMap);
 	}
 	
