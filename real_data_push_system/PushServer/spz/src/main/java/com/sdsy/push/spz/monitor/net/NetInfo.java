@@ -11,6 +11,10 @@ public class NetInfo {
 	
 	private static final int KB = 1024;
 		
+	public NetInfo(Sigar sigar) {
+		this.sigar = sigar;
+	}
+	
 	public String[] getNetInterfaceList() throws Exception {
 		return sigar.getNetInterfaceList();
 	}
