@@ -7,14 +7,25 @@
 	"isKeepAlive" : true,
 	"servConfigs" : [ 
 		{
-			"servName" : "btc",
-			"chat" : true,
-			"personal" : true,
+			"servName" : "1_entrust",
+			"chat" : false,
+			"personal" : false,
 			"boardcast" : true,
-			"workers" : 2,
-			"bChannel" : "btc_boardcast",
-			"cChannel" : "btc_chat",
-			"pChannel" : "btc_personal"
+			"workers" : 2
+		},
+		{
+			"servName" : "1_trade",
+			"chat" : false,
+			"personal" : false,
+			"boardcast" : true,
+			"workers" : 2
+		},
+		{
+			"servName" : "1_price",
+			"chat" : false,
+			"personal" : false,
+			"boardcast" : true,
+			"workers" : 2
 		}
 	],
 	"monitorConfig" : {
