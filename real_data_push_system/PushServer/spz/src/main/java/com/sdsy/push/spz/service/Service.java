@@ -7,6 +7,7 @@ package com.sdsy.push.spz.service;
 
 import com.corundumstudio.socketio.SocketIOClient;
 import com.sdsy.push.spz.base.ServConfig;
+import com.sdsy.push.spz.constant.Const;
 import com.sdsy.push.spz.service.buffer.ChatMessageQueue;
 import com.sdsy.push.spz.service.buffer.PrivateMessageQueue;
 import com.sdsy.push.spz.service.buffer.PublicMessageQueuePool;
@@ -93,7 +94,7 @@ public class Service {
 		/** 初始化点对点消息容器和生产者 */
 		if(servConfig.isPersonal()) {
 			privateMessageQueue = new PrivateMessageQueue();
-			PersonalListener pl = new PersonalListener(servConfig.getpChannel(),privateMessageQueue);
+			PersonalListener pl = new PersonalListener(servConfig.getServName()+Const.PERSONAL_CHANNEL,privateMessageQueue);
 			ppp = new Thread(pl);
 			ppp.setName(servConfig.getServName() + "-personal-productor");
 		}
@@ -101,7 +102,7 @@ public class Service {
 		/** 初始化广播消息容器和生产者 */
 		if(servConfig.isBoardcast()) {
 			publicMessageQueuePool  = new PublicMessageQueuePool(servConfig.getWorkers());
-			BoardCastListener bl = new BoardCastListener(servConfig.getbChannel(),publicMessageQueuePool);
+			BoardCastListener bl = new BoardCastListener(servConfig.getServName()+Const.BOARDCAST_CHANNEL,publicMessageQueuePool);
 			bpp = new Thread(bl);
 			bpp.setName(servConfig.getServName()+"-boardcast-productor");
 		}
@@ -111,7 +112,7 @@ public class Service {
 		 */
 		if(servConfig.isChat()) {
 			chatMessageQueue = new ChatMessageQueue();
-			ChatListener cl = new ChatListener(servConfig.getcChannel(),chatMessageQueue);
+			ChatListener cl = new ChatListener(servConfig.getServName()+Const.CHAT_CHANNEL,chatMessageQueue);
 			cpp = new Thread(cl);
 			cpp.setName(servConfig.getServName()+"-chat-productor");
 		}

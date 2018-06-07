@@ -54,7 +54,7 @@ public class MessageSender extends Thread {
 
 	public void setServName(String servName) {
 		this.servName = servName;
-		eventName = servName + "_" + Const.PUBLIC_ATTR;
+		eventName = servName + Const.BOARDCAST_CHANNEL;
 	}
 
 	public void run() {

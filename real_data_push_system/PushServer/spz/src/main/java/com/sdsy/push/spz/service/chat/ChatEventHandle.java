@@ -2,7 +2,6 @@ package com.sdsy.push.spz.service.chat;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import com.alibaba.fastjson.JSON;
 import com.sdsy.push.spz.base.ChatInfo;
 import com.sdsy.push.spz.constant.Const;
@@ -28,7 +27,7 @@ public class ChatEventHandle extends Thread {
 			try {
 				String data = bufferPool.take();
 				ChatInfo chat =JSON.parseObject(data, ChatInfo.class);
-				RedisUtils.getRedisUtils().publish(chat.getServName()+"_"+Const.CHAT_ATTR, data);
+				RedisUtils.getRedisUtils().publish(chat.getServName()+Const.CHAT_CHANNEL, data);
 			} catch (Exception e) {
 				logger.error("处理聊天消息失败 ： {}",e);
 			}

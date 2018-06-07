@@ -5,12 +5,16 @@ public class Const {
 	public final static String ERROR_ARGUMENTS = "";
 	public final static String REGISTER = "register";
 	public final static String CHAT = "chat";
-	public final static String PERSONAL = "personal";
-	public final static String BOARDCAST = "boardcast";
 	public final static String UUID = "uuid";
-	public final static String PRIVATE_ATTR = "private";
-	public final static String PUBLIC_ATTR = "public";
-	public final static String CHAT_ATTR = "chat";
+
+	// 广播消息通道
+	public static final String BOARDCAST_CHANNEL = "_bChannel";
+	// 私人消息通道
+	public static final String PERSONAL_CHANNEL = "_pChannel";
+	// 聊天消息通道
+	public static final String CHAT_CHANNEL = "_cChannel";
+	
+	// redis相关
 	public static final String REDIS_DEFAULT_CONFIG_NAME = "redis.properties";
 	public static final String REDIS_PASSWORD = "redis.pass";
 	public static final String REDIS_MAX_TOTAL_NAME = "redis.pool.maxActive";

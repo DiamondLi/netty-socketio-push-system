@@ -12,21 +12,6 @@ public class ServConfig {
 	private String servName;
 	
 	/**
-	 *  广播频道
-	 */
-	private String bChannel;
-	
-	/**
-	 *  私人频道
-	 */
-	private String pChannel;
-	
-	/**
-	 *  聊天频道
-	 */
-	private String cChannel;
-	
-	/**
 	 *  工作线程个数
 	 */
 	private int workers = 1;
@@ -45,30 +30,6 @@ public class ServConfig {
 	 */
 	private boolean chat;
 	
-	public String getbChannel() {
-		return bChannel;
-	}
-
-	public void setbChannel(String bChannel) {
-		this.bChannel = bChannel;
-	}
-
-	public String getpChannel() {
-		return pChannel;
-	}
-
-	public void setpChannel(String pChannel) {
-		this.pChannel = pChannel;
-	}
-
-	public String getcChannel() {
-		return cChannel;
-	}
-
-	public void setcChannel(String cChannel) {
-		this.cChannel = cChannel;
-	}
-
 	public boolean isChat() {
 		return chat;
 	}

@@ -80,6 +80,6 @@ public class MessageSenderChat extends Thread {
 
 	public void setServName(String servName) {
 		this.servName = servName;
-		eventName = servName + "_" + Const.CHAT_ATTR;
+		eventName = servName + Const.CHAT_CHANNEL;
 	}
 }

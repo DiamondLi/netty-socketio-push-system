@@ -8,7 +8,6 @@ import com.alibaba.fastjson.JSONObject;
 import com.corundumstudio.socketio.SocketIOClient;
 import com.sdsy.push.spz.constant.Const;
 import com.sdsy.push.spz.service.buffer.PrivateMessageQueue;
-
 import io.netty.util.internal.StringUtil;
 
 public class MessageSenderP2P extends Thread {
@@ -77,7 +76,7 @@ public class MessageSenderP2P extends Thread {
 
 	public void setServName(String servName) {
 		this.servName = servName;
-		eventName = servName + "_" + Const.PRIVATE_ATTR;
+		eventName = servName + Const.PERSONAL_CHANNEL;
 	}
 	
 }
