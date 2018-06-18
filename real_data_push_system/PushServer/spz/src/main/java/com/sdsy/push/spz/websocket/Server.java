@@ -118,12 +118,12 @@ public class Server {
 		/**
 		 *  添加聊天事件监听器
 		 */
-		server.addEventListener(CHAT, String.class, new DataListener<String>() {
-			public void onData(SocketIOClient client, String data, AckRequest ackSender) throws Exception {
-				logger.info("USER CHAT : {}",data);
-				servCentral.chat(data);
-			}
-		});
+//		server.addEventListener(CHAT, String.class, new DataListener<String>() {
+//			public void onData(SocketIOClient client, String data, AckRequest ackSender) throws Exception {
+//				logger.info("USER CHAT : {}",data);
+//				servCentral.chat(data);
+//			}
+//		});
 		
 		/** 
 		 *  服务中心启动
