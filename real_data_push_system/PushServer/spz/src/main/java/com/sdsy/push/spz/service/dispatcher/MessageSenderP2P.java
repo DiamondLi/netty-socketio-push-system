@@ -39,6 +39,12 @@ public class MessageSenderP2P extends Thread {
 	 * 就是线程安全的（即使不使用ConcurrentHashMap）
 	 */
 	public void register(SocketIOClient client,String uuid) {
+		// 如果一个服务内已经有一个UUID与client对应的连接，就直接返回
+		// 不允许同一个服务同一个UUID重复注册，这里不做处理，会造成第一个
+		// client永远没法remove掉，会一直存在于clientAsKeyMap中
+		if(uuidAsKeyMap.containsKey(uuid)) {
+			return;
+		}
 		uuidAsKeyMap.put(uuid, client);
 		clientAsKeyMap.put(client, uuid);
 	}

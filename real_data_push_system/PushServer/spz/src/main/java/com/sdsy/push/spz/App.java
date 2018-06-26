@@ -19,7 +19,7 @@ public class App {
     	
     	try {
         	// 读取配置文件 
-        	Config config = new ResolveJSONConfigFile().readConfigFile();
+        	Config config = new ResolveJSONConfigFile().readConfigFile("config.json");
         	// 初始化服务器
         	Server server = new Server(config);
         	// 初始化监控器
