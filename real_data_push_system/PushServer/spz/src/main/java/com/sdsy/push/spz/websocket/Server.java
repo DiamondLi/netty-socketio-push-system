@@ -24,6 +24,10 @@ public class Server {
 	
 	private static final String CHAT = "chat";
 	
+	private static final String PING = "ping";
+	
+	private static final String PONG = "pong";
+	
 	private static Logger logger = LoggerFactory.getLogger(Server.class);
 	
 	private Config config;
@@ -123,6 +127,17 @@ public class Server {
 				logger.info("USER CHAT : {}",data);
 				servCentral.chat(data);
 			}
+		});
+		
+		/**
+		 *  添加pingpong事件监听器
+		 */
+		server.addEventListener(PING,String.class, new DataListener<String>() {
+			@Override
+			public void onData(SocketIOClient client, String data, AckRequest arg2) throws Exception {
+				logger.info("PING : {} ,{}",data,client.getRemoteAddress());
+				client.sendEvent(PONG, "pong");
+			}	
 		});
 		
 		/** 
